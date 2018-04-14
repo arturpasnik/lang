@@ -30,5 +30,8 @@
 <div class="row">
   <div class="col-12">
     <h2>Ingredients</h2>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">{{ingredient.name}} ({{ingredient.amount}})</li>
+    </ul>
   </div>
 </div>
