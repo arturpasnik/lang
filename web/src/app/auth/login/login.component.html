@@ -23,7 +23,9 @@
 						ngModel
 						required
 						email
+						#email="ngModel"
 					>
+					<p class="form-error" *ngIf="email.touched && !email.valid">Please enter valid email address</p>
 				</div>
 				<button
 					type="submit"

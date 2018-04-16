@@ -5,3 +5,7 @@ a{
 input.ng-invalid.ng-touched{
     border: 1px solid crimson;
 }
+.form-error{
+    margin: 5px 0;
+    color: crimson;
+}
