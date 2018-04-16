@@ -71,7 +71,7 @@ export class RecipeEditComponent implements OnInit {
   		this.recipeForm.value['imagePath'],
 		  this.recipeForm.value['ingredients']
 	  );
-  	console.log(newRecipe);
+
 		if(this.editMode){
 			this.recipeService.updateRecipe(this.id, newRecipe);//you can do both ways since all values match model
 		}else {
