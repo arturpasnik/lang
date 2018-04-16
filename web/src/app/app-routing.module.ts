@@ -6,10 +6,12 @@ import {RecipesStartComponent} from './recipes/recipes-start/recipes-start.compo
 import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.component';
 import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
 import {LoginComponent} from './auth/login/login.component';
+import {RegisterComponent} from './auth/register/register.component';
 
 const appRoutes: Routes = [
 	{path: '', redirectTo: '/recipes', pathMatch: 'full'},
 	{path: 'login', component: LoginComponent},
+	{path: 'register', component: RegisterComponent},
 	{path: 'recipes', component: RecipesComponent,
 		children: [
 			{path: '', component: RecipesStartComponent},
