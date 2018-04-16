@@ -10,6 +10,7 @@
 						name="username"
 						class="form-control"
 						ngModel
+						required
 					>
 				</div>
 				<div class="form-group">
@@ -20,9 +21,15 @@
 						name="email"
 						class="form-control"
 						ngModel
+						required
+						email
 					>
 				</div>
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button
+					type="submit"
+					class="btn btn-primary"
+					[disabled]="!loginForm.valid"
+				>Submit</button>
 			</form>
 		</div>
 	</div>
