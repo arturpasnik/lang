@@ -17,6 +17,7 @@ import { RecipesStartComponent } from './recipes/recipes-start/recipes-start.com
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import {RecipeService} from './recipes/recipe.service';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { RegisterComponent } from './auth/register/register.component';
 	  ReactiveFormsModule,
     AppRoutingModule,
   ],
-  providers: [ShoppingListService],
+  providers: [RecipeService, ShoppingListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
