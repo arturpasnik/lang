@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-	@ViewChild('loginForm') loginForm: NgForm;
+	@ViewChild('f') loginForm: NgForm;
 
   constructor() { }
 
