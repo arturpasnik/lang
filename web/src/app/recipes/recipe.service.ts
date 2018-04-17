@@ -37,11 +37,10 @@ export class RecipeService
 	constructor(private slService: ShoppingListService, private http: HttpClient){}
 
 	getRecipes(){
-		this.http.get('http://lang.local/api/recipe/all', {headers: new Headers({'Access-Control-Allow-Origin':'*'})}).subscribe(
+		this.http.get('http://lang.local/api/recipe/all').subscribe(
 			(recipes: Recipe[]) => {
-				console.log(recipes);
-				//this.recipes = recipes;
-				//this.recipesChanged.next(this.recipes.slice());
+				this.recipes = recipes;
+				this.recipesChanged.next(this.recipes.slice());
 			}
 		);
 	}
