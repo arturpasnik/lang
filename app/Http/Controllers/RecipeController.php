@@ -7,6 +7,6 @@ use App\Recipe;
 class RecipeController extends Controller
 {
     public function getAll(){
-			return Recipe::all();
+			return Recipe::with('ingredients')->get();
     }
 }
