@@ -21,3 +21,6 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 	Route::get('/user', function() { return auth()->user();});
 	Route::post('/user/logout', 'APILoginController@logout');
 });
+
+
+Route::get('recipe/all', 'RecipeController@getAll');
