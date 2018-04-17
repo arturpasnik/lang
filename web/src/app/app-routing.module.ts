@@ -7,6 +7,7 @@ import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.compo
 import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
+import {FilterExampleComponent} from './filter-example/filter-example.component';
 
 const appRoutes: Routes = [
 	{path: '', redirectTo: '/recipes', pathMatch: 'full'},
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
 		]
 	},
 	{path: 'shopping-list', component: ShoppingListComponent},
+	{path: 'pipe-filter', component: FilterExampleComponent},
 ];
 
 @NgModule({
