@@ -21,6 +21,7 @@ import {RecipeService} from './recipes/recipe.service';
 import {ShortenPipe} from './shared/pipe/shorten.pipe';
 import { FilterExampleComponent } from './filter-example/filter-example.component';
 import { FilterPipe } from './shared/pipe/filter.pipe';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { FilterPipe } from './shared/pipe/filter.pipe';
     FormsModule,
 	  ReactiveFormsModule,
     AppRoutingModule,
+	  HttpClientModule
   ],
   providers: [RecipeService, ShoppingListService],
   bootstrap: [AppComponent]

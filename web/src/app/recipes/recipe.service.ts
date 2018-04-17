@@ -4,6 +4,9 @@ import {Injectable} from '@angular/core';
 import {Ingredient} from '../shared/ingredient.model';
 import {ShoppingListService} from '../shopping-list/shopping-list.service';
 import {Subject} from 'rxjs/Subject';
+import {HttpClient} from '@angular/common/http';
+
+import 'rxjs/Rx';
 
 @Injectable()
 export class RecipeService
@@ -31,10 +34,16 @@ export class RecipeService
 		)
 	];
 
-	constructor(private slService: ShoppingListService){}
+	constructor(private slService: ShoppingListService, private http: HttpClient){}
 
 	getRecipes(){
-		return this.recipes.slice();
+		this.http.get('http://lang.local/api/recipe/all', {headers: new Headers({'Access-Control-Allow-Origin':'*'})}).subscribe(
+			(recipes: Recipe[]) => {
+				console.log(recipes);
+				//this.recipes = recipes;
+				//this.recipesChanged.next(this.recipes.slice());
+			}
+		);
 	}
 
 	getRecipeByIndex(index: number){
