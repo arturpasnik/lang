@@ -24,3 +24,4 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
 
 Route::get('recipe/all', 'RecipeController@getAll');
+Route::get('recipe/{id}', 'RecipeController@getById');
