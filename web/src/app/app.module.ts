@@ -18,6 +18,7 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import {RecipeService} from './recipes/recipe.service';
+import {ShortenPipe} from './shared/pipe/shorten.pipe';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {RecipeService} from './recipes/recipe.service';
     RecipesStartComponent,
     RecipeEditComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+	  ShortenPipe
   ],
   imports: [
     BrowserModule,
