@@ -22,6 +22,7 @@ import {ShortenPipe} from './shared/pipe/shorten.pipe';
 import { FilterExampleComponent } from './filter-example/filter-example.component';
 import { FilterPipe } from './shared/pipe/filter.pipe';
 import {HttpClientModule} from '@angular/common/http';
+import {AuthService} from './auth/auth.service';
 
 
 @NgModule({
@@ -49,7 +50,7 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
 	  HttpClientModule
   ],
-  providers: [RecipeService, ShoppingListService],
+  providers: [RecipeService, ShoppingListService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
