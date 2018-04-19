@@ -24,6 +24,7 @@ import { FilterPipe } from './shared/pipe/filter.pipe';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthService} from './auth/auth.service';
 import {AuthGuardService} from './auth/auth.guard.service';
+import {UserService} from './shared/user.service';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import {AuthGuardService} from './auth/auth.guard.service';
     RegisterComponent,
 	  ShortenPipe,
 	  FilterExampleComponent,
-	  FilterPipe
+	  FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +52,7 @@ import {AuthGuardService} from './auth/auth.guard.service';
     AppRoutingModule,
 	  HttpClientModule
   ],
-  providers: [RecipeService, ShoppingListService, AuthService, AuthGuardService],
+  providers: [RecipeService, ShoppingListService, AuthService, AuthGuardService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
