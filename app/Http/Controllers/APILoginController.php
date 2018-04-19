@@ -3,40 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 use Validator;
 use JWTFactory;
 use JWTAuth;
 
 class APILoginController extends Controller
 {
-    public function login(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|max:255',
-            'password' => 'required'
-        ]);
+	use AuthenticatesUsers;
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors());
-        }
+	public function login(Request $request)
+	{
+		$this->validateLogin($request);
+		if ($this->hasTooManyLoginAttempts($request)) {
+			$this->fireLockoutEvent($request);
+			return $this->sendLockoutResponse($request);
+		}
+		$credentials = $request->only('email', 'password');
+		$this->incrementLoginAttempts($request);
+		try {
+			if (!$token = JWTAuth::attempt($credentials)) {
+				return $this->sendFailedLoginResponse($request);
+			}
+		} catch (JWTException $e) {
+			return $this->sendFailedLoginResponse($request);
+		}
+		return response()->json(compact(['token']));
+	}
 
-        $credentials = $request->only('email', 'password');
-
-        try {
-            if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
-            }
-        } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
-        }
-        return response()->json(compact('token'));
-    }
-
-    public function logout()
-    {
-        JWTAuth::invalidate();
-        return response([
-            'status' => 'success',
-            'msg' => 'Logged out Successfully.'], 200);
-    }
+	public function logout()
+	{
+		JWTAuth::invalidate();
+		return response([
+			'status' => 'success',
+			'msg' => 'Logged out Successfully.'], 200);
+	}
 }
