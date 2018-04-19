@@ -10,7 +10,7 @@ export class AuthService
 	private token: string = null;
 
 	constructor(private http: HttpClient, private router: Router){
-
+		this.token = localStorage.getItem('appToken');
 	}
 
 	isAuthenticated(){
@@ -31,8 +31,9 @@ export class AuthService
 
 	login(email: string, password: string){
 		this.http.post('http://lang.local/api/user/login', {email: email, password: password}).subscribe(
-			(token:string) => {
-				this.setToken(token);
+			(token:any) => {
+				this.setToken(token.token);
+				localStorage.setItem('appToken', token.token);
 				this.router.navigate(['/']);
 			},
 			(error:any) => {
