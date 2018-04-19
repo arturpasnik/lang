@@ -23,6 +23,7 @@ import { FilterExampleComponent } from './filter-example/filter-example.componen
 import { FilterPipe } from './shared/pipe/filter.pipe';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthService} from './auth/auth.service';
+import {AuthGuardService} from './auth/auth.guard.service';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import {AuthService} from './auth/auth.service';
     AppRoutingModule,
 	  HttpClientModule
   ],
-  providers: [RecipeService, ShoppingListService, AuthService],
+  providers: [RecipeService, ShoppingListService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,12 +8,13 @@ import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {FilterExampleComponent} from './filter-example/filter-example.component';
+import {AuthGuardService} from './auth/auth.guard.service';
 
 const appRoutes: Routes = [
 	{path: '', redirectTo: '/recipes', pathMatch: 'full'},
 	{path: 'login', component: LoginComponent},
 	{path: 'register', component: RegisterComponent},
-	{path: 'recipes', component: RecipesComponent,
+	{path: 'recipes', component: RecipesComponent, canActivate: [AuthGuardService],
 		children: [
 			{path: '', component: RecipesStartComponent},
 			{path: 'new', component: RecipeEditComponent},
