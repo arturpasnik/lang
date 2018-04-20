@@ -40,4 +40,10 @@ class APILoginController extends Controller
 			'status' => 'success',
 			'msg' => 'Logged out Successfully.'], 200);
 	}
+
+	public function refreshToken(){
+		$oldToken = JWTAuth::getToken();
+		$token = JWTAuth::refresh($oldToken);
+		return response()->json(compact(['token']));
+	}
 }
