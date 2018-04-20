@@ -1,7 +1,8 @@
 import {User} from '../shared/model/user.model';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService
@@ -50,6 +51,29 @@ export class AuthService
 		if(this.token){
 			return this.token;
 		}
-		return false;
+		return '';
+	}
+
+	refreshToken(): Observable<string> {
+		/*
+				The call that goes in here will use the existing refresh token to call
+				a method on the oAuth server (usually called refreshToken) to get a new
+				authorization token for the API calls.
+		*/
+		let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.getToken());
+		this.http.get('http://lang.local/api/user/refreshToken',{headers: headers}).subscribe(
+			(newToken:any) => {
+				this.setToken(newToken.token);
+				localStorage.setItem('appToken', newToken.token);
+			}
+		);
+		return Observable.of(this.getToken()).delay(200);
+
+	}
+
+	logout(){
+		this.setToken('');
+		localStorage.removeItem('appToken');
+		this.router.navigate(['/login']);
 	}
 }

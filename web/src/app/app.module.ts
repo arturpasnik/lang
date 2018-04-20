@@ -21,10 +21,11 @@ import {RecipeService} from './recipes/recipe.service';
 import {ShortenPipe} from './shared/pipe/shorten.pipe';
 import { FilterExampleComponent } from './filter-example/filter-example.component';
 import { FilterPipe } from './shared/pipe/filter.pipe';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthService} from './auth/auth.service';
 import {AuthGuardService} from './auth/auth.guard.service';
 import {UserService} from './shared/user.service';
+import {RequestInterceptorService} from './auth/request-interceptor.service';
 
 
 @NgModule({
@@ -52,7 +53,13 @@ import {UserService} from './shared/user.service';
     AppRoutingModule,
 	  HttpClientModule
   ],
-  providers: [RecipeService, ShoppingListService, AuthService, AuthGuardService, UserService],
+  providers: [RecipeService, ShoppingListService, AuthService, AuthGuardService, UserService,
+	  {
+		  provide: HTTP_INTERCEPTORS,
+		  useClass: RequestInterceptorService,
+		  multi: true
+	  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
