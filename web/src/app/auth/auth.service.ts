@@ -61,14 +61,13 @@ export class AuthService
 				authorization token for the API calls.
 		*/
 		let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.getToken());
-		this.http.get('http://lang.local/api/user/refreshToken',{headers: headers}).subscribe(
+		return this.http.get('http://lang.local/api/user/refreshToken',{headers: headers}).map(
 			(newToken:any) => {
 				this.setToken(newToken.token);
 				localStorage.setItem('appToken', newToken.token);
+				return newToken.token;
 			}
 		);
-		return Observable.of(this.getToken()).delay(200);
-
 	}
 
 	logout(){

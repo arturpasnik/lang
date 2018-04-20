@@ -76,16 +76,14 @@ export class RequestInterceptorService implements HttpInterceptor
 	handle400Error(error) {
 		if (error && error.status === 400 && error.error && error.error.error === 'invalid_grant') {
 			// If we get a 400 and the error message is 'invalid_grant', the token is no longer valid so logout.
+			this.authService.logout();
 			return this.logoutUser();
 		}
-		console.log('handle400Error');
-		this.authService.logout();
 		return Observable.throw(error);
 	}
 
 	logoutUser()
 	{
-		console.log('test');
 		return Observable.throw("");
 	}
 }
