@@ -10,7 +10,7 @@ const appRoutes: Routes = [
 	{path: 'login', component: LoginComponent},
 	{path: 'register', component: RegisterComponent},
 	{path: 'shopping-list', component: ShoppingListComponent},
-	{path: 'pipe-filter', component: FilterExampleComponent},
+	//{path: 'pipe-filter', component: FilterExampleComponent},
 ];
 
 @NgModule({
