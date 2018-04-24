@@ -14,4 +14,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
 
   }
+
+	isAuthenticated() {
+		return this.authService.isAuthenticated();
+	}
 }
