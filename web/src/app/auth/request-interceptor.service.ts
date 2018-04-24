@@ -30,6 +30,8 @@ export class RequestInterceptorService implements HttpInterceptor
 							return this.handle400Error(error);
 						case 401:
 							return this.handle401Error(req, next);
+						default:
+							return this.logoutUser();
 					}
 				} else {
 					return Observable.throw(error);
@@ -84,6 +86,7 @@ export class RequestInterceptorService implements HttpInterceptor
 
 	logoutUser()
 	{
+		this.authService.logout();
 		return Observable.throw("");
 	}
 }
