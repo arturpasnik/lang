@@ -6,7 +6,6 @@ import {SharedModule} from '../shared/shared.module';
 import {AppRoutingModule} from '../app-routing.module';
 import {RecipeService} from '../recipes/recipe.service';
 import {AuthService} from '../auth/auth.service';
-import {ShoppingListService} from '../shopping-list/shopping-list.service';
 import {UserService} from '../shared/user.service';
 import {RequestInterceptorService} from '../auth/request-interceptor.service';
 
@@ -23,7 +22,7 @@ import {RequestInterceptorService} from '../auth/request-interceptor.service';
 		AppRoutingModule,
 		HeaderComponent
 	],
-	providers: [RecipeService, ShoppingListService, AuthService, UserService,
+	providers: [RecipeService, AuthService, UserService,
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: RequestInterceptorService,
