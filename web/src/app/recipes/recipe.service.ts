@@ -1,12 +1,11 @@
 import {Recipe} from './recipe.model';
 import {Injectable} from '@angular/core';
 
-import {Ingredient} from '../shared/ingredient.model';
-import {ShoppingListService} from '../shopping-list/shopping-list.service';
 import {Subject} from 'rxjs/Subject';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/Rx';
 import {AuthService} from '../auth/auth.service';
+
 
 @Injectable()
 export class RecipeService
@@ -15,7 +14,7 @@ export class RecipeService
 	
 	private recipes: Recipe[];
 
-	constructor(private slService: ShoppingListService, private authService: AuthService, private http: HttpClient){}
+	constructor(private authService: AuthService, private http: HttpClient){}
 
 	getRecipes(){
 		this.http.get('http://lang.local/api/recipe/all').subscribe(
@@ -28,10 +27,6 @@ export class RecipeService
 
 	getRecipeByIndex(index: number){
 		return this.recipes[index];
-	}
-
-	addIngredientsToShoppingList(ingredients: Ingredient[]){
-		this.slService.addIngredients(ingredients);
 	}
 
 	addRecipe(recipe: Recipe){
